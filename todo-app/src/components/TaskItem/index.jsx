@@ -11,7 +11,7 @@ const TaskItem = ({ id, keyIndex, label, completed, handleCheckbox, handleDelete
                     type="checkbox"
                     id={id}
                     onClick={() => handleCheckbox(keyIndex)}
-                    checked={completed}
+                    defaultChecked={completed}
                 /> {label}
             </label>
             <div className="crossIcon" onClick={() => handleDelete(keyIndex)}></div>

@@ -6,32 +6,35 @@
     input[type="checkbox"] {
         vertical-align: baseline;
     }
+
+    .completedClass {
+        text-decoration: line-through;
+    }
+
+    .crossIcon {
+        height: 14px;
+        width: 14px;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 2px;
+        float: right;
+    }
+    
+    .crossIcon:hover {
+        background-color: #cccccc;
+    }
+    
+    .crossIcon:after {
+        position: absolute;
+        top: 0px;
+        bottom: 0;
+        left: 4px;
+        right: 0;
+        content: "\00D7";
+    }
 }
 
-.completedClass {
-    text-decoration: line-through;
-}
 
-.crossIcon {
-    height: 14px;
-    width: 14px;
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 20px;
-    padding: 2px;
-    float: right;
-}
 
-.crossIcon:hover {
-    background-color: #cccccc;
-}
-
-.crossIcon:after {
-    position: absolute;
-    top: 0px;
-    bottom: 0;
-    left: 4px;
-    right: 0;
-    content: "\00D7";
-}

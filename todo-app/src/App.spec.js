@@ -1,7 +1,24 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import App from './App';
 
-test('App component renders', () => {
+let wrapper = null;
+
+const defaultProps = {
+};
+
+const init = (props = {}) => {
+    wrapper = shallow(<App {...defaultProps} {...props} />);
+
+    afterEach(() => {
+        wrapper.update();
+    });
+};
+
+describe('App', () => {
+    init();
+    it('should render the component correctly', () => {
+        expect(wrapper).toMatchSnapshot();
+    });
 });

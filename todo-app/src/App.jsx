@@ -1,65 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import get from 'lodash/get';
 
 import TaskField from './components/TaskField';
 import TaskList from './components/TaskList';
 
+import { addTask, completeTask, removeTask } from './utils/todo-helper';
+import * as data from './stub/tasks.json';
+
 import './App.scss';
 
-const DEFAULT_TASKS = [
-    { taskId: 1, label: "Task 1", completed: false },
-    { taskId: 2, label: "Task 2", completed: false },
-    { taskId: 3, label: "Task 3", completed: false }
-];
-
-const defaultTasks = JSON.parse(localStorage.getItem( 'todoTasks' )) || DEFAULT_TASKS;
+const defaultTasks = JSON.parse(localStorage.getItem( 'todoTasks' )) || get(data, 'tasks');
 
 const App = () => {
     const [fieldValue, setFieldValue] = useState('');
     const [hideCompleted, setHideCompleted] = useState(false);
     const [tasks, setTasks] = useState(defaultTasks);
 
-    // Find the last key index
-    const getLastTaskId = () => {
-        return tasks.sort((a, b) => a.taskId > b.taskId ? 1 : -1)[tasks.length - 1].key;
-    }
-
-    // Add a new task
-    const addTask = (event) => {
-        event.preventDefault();
-
-        if (fieldValue) {
-            const newTask = { taskId: getLastTaskId() + 1, label: fieldValue, completed: false }
-            setTasks([...tasks, newTask]);
-            setFieldValue('');
-        }
-    };
-
-    // Mark/unmark task as completed
-    const completeTask = (keyIndex) => {
-        const temp = [...tasks];
-        const itemIndex = temp.findIndex(o => o.taskId == keyIndex);
-        temp[itemIndex].completed = !temp[itemIndex].completed;
-        setTasks(temp);
-    };
-
-    // Delete task
-    const removeTask = (keyIndex) => {
-        const temp = [...tasks];
-        const itemIndex = temp.findIndex(o => o.taskId == keyIndex);
-        temp.splice(itemIndex, 1);
-        setTasks(temp);
-    };
-
-    // Filter completed tasks
-    const filterCompletedTasks = (filterCompleted) => {
-        setHideCompleted(filterCompleted);
-    };
-
     // Update localstorage when the todo list is modified
     useEffect(() => {
         localStorage.setItem('todoTasks', JSON.stringify(tasks));
     }, [tasks]);
-
 
     // List to be displayed
     const displayTasks = hideCompleted ? tasks.filter((obj) => !obj.completed) : tasks;
@@ -72,16 +32,21 @@ const App = () => {
                     <input
                         type="checkbox"
                         id="hide-completed-tasks"
-                        onClick={(event) => filterCompletedTasks(event.target.checked)}
+                        onClick={(event) => setHideCompleted(event.target.checked)}
                     /> Hide completed tasks
                 </label>
             </div>
-            <form onSubmit={addTask}>
-                <TaskField handleChange={(event) => setFieldValue(event.target.value)} />
+            <form onSubmit={(e) => {
+                e.preventDefault();
+
+                addTask(fieldValue, tasks, setTasks);
+                setFieldValue('');
+            }}>
+                <TaskField value={fieldValue} handleChange={(event) => setFieldValue(event.target.value)} />
                 <TaskList
                     tasks={displayTasks}
-                    handleCheckbox={completeTask}
-                    handleDelete={removeTask}
+                    handleCheckbox={(keyIndex) => completeTask(keyIndex, tasks, setTasks)}
+                    handleDelete={(keyIndex) => removeTask(keyIndex, tasks, setTasks)}
                 />
             </form>
         </div>
