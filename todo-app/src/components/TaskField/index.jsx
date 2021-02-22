@@ -7,7 +7,7 @@ const TaskField = ({ handleChange }) => (
         className="taskInput"
         type="text"
         placeholder={'Enter your task here'}
-        onChange={(event) => handleChange(event.target.value)}
+        onChange={handleChange}
     />
 );
 

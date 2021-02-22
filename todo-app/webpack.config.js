@@ -5,7 +5,7 @@ const path = require('path');
 const config = {
     mode: "development",
     context: __dirname,
-    entry: './src/App.jsx',
+    entry: './src/index.jsx',
     output: {
         path: path.join(__dirname, 'public/build'),
         filename: 'bundle.js'

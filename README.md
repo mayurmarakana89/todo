@@ -21,4 +21,4 @@ Please run following command to start the application:
 ```
 npm run start
 ```
-Once the application has started you, can access the user interface at https://localhost:4000/
+Once the application has started you, can access the user interface at http://localhost:4000/

@@ -12,7 +12,7 @@
     text-decoration: line-through;
 }
 
-.closeIcon {
+.crossIcon {
     height: 14px;
     width: 14px;
     position: relative;
@@ -23,11 +23,11 @@
     float: right;
 }
 
-.closeIcon:hover {
+.crossIcon:hover {
     background-color: #cccccc;
 }
 
-.closeIcon:after {
+.crossIcon:after {
     position: absolute;
     top: 0px;
     bottom: 0;

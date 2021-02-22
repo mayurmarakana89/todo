@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {render} from 'react-dom';
 
 import TaskField from './components/TaskField';
 import TaskList from './components/TaskList';
@@ -11,6 +10,7 @@ const DEFAULT_TASKS = [
     { taskId: 2, label: "Task 2", completed: false },
     { taskId: 3, label: "Task 3", completed: false }
 ];
+
 const defaultTasks = JSON.parse(localStorage.getItem( 'todoTasks' )) || DEFAULT_TASKS;
 
 const App = () => {
@@ -77,7 +77,7 @@ const App = () => {
                 </label>
             </div>
             <form onSubmit={addTask}>
-                <TaskField handleChange={setFieldValue} />
+                <TaskField handleChange={(event) => setFieldValue(event.target.value)} />
                 <TaskList
                     tasks={displayTasks}
                     handleCheckbox={completeTask}
@@ -86,6 +86,6 @@ const App = () => {
             </form>
         </div>
     );
-}
+};
 
-render(<App />, document.getElementById('app'));
+export default App;
