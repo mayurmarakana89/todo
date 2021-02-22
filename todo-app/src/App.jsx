@@ -65,10 +65,10 @@ const App = () => {
     const displayTasks = hideCompleted ? tasks.filter((obj) => !obj.completed) : tasks;
 
     return (
-        <div>
-            <div>
+        <div className="appContainer">
+            <div className="appHeader">
                 <label>{`Todo list (${displayTasks.length})`}</label>
-                <label htmlFor="hide-completed-tasks">
+                <label className="filterClass" htmlFor="hide-completed-tasks">
                     <input
                         type="checkbox"
                         id="hide-completed-tasks"

@@ -1,7 +1,37 @@
 .taskItem {
     padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px;
+
+    input[type="checkbox"] {
+        vertical-align: baseline;
+    }
 }
 
 .completedClass {
     text-decoration: line-through;
+}
+
+.closeIcon {
+    height: 14px;
+    width: 14px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 2px;
+    float: right;
+}
+
+.closeIcon:hover {
+    background-color: #cccccc;
+}
+
+.closeIcon:after {
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    left: 4px;
+    right: 0;
+    content: "\00D7";
 }
