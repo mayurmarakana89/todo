@@ -21,4 +21,11 @@ describe('App', () => {
     it('should render the component correctly', () => {
         expect(wrapper).toMatchSnapshot();
     });
+
+    it('should display app children', () => {
+        expect(wrapper.find('.appHeader')).toHaveLength(1);
+        expect(wrapper.find('.filterClass')).toHaveLength(1);
+        expect(wrapper.find('TaskField')).toHaveLength(1);
+        expect(wrapper.find('TaskList')).toHaveLength(1);
+    });
 });

@@ -39,14 +39,21 @@ const App = () => {
             <form onSubmit={(e) => {
                 e.preventDefault();
 
-                addTask(fieldValue, tasks, setTasks);
+                const newTasks = addTask(fieldValue, tasks);
+                setTasks(newTasks);
                 setFieldValue('');
             }}>
                 <TaskField value={fieldValue} handleChange={(event) => setFieldValue(event.target.value)} />
                 <TaskList
                     tasks={displayTasks}
-                    handleCheckbox={(keyIndex) => completeTask(keyIndex, tasks, setTasks)}
-                    handleDelete={(keyIndex) => removeTask(keyIndex, tasks, setTasks)}
+                    handleCheckbox={(keyIndex) => {
+                        const newTasks = completeTask(keyIndex, tasks);
+                        setTasks(newTasks);
+                    }}
+                    handleDelete={(keyIndex) => {
+                        const newTasks = removeTask(keyIndex, tasks);
+                        setTasks(newTasks);
+                    }}
                 />
             </form>
         </div>
