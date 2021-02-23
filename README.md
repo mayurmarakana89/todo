@@ -23,6 +23,13 @@ npm run start
 ```
 Once the application has started you, can access the user interface at http://localhost:4000/
 
+4. Test your application
+
+Please run following command to run tests & coverage report of the application:
+```
+npm run test
+```
+
 # Instructions to use the application
 
 Description: Todo application is used to manage your todo list. You can add, complete, remove or hide completed tasks.
